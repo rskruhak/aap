@@ -1,0 +1,15 @@
+---
+- name: Recurring cron job
+  hosts: webserver
+  tasks:
+
+    - name: Crontab file exists
+      ansible.builtin.cron:
+        name: Add date and time to file
+        job: date >> /home/rskruhak/my_date_cron
+        minute: "*/2"
+        hour: "*"
+        weekday: "*"
+        user: rskruhak
+        cron_file: add-date-time
+        state: present
